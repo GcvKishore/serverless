@@ -13,3 +13,10 @@ functions:
       - http:
           path: data
           method: get
+
+  postData:
+    handler: handler.postData
+    events:
+      - http:
+          path: data
+          method: post

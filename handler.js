@@ -13,8 +13,26 @@ module.exports.getData = async (event) => {
   };
 };
 
+module.exports.postData = async (event) => {
+  const con = await connectDB();
+  const save_data = await Registration.save();
+  const registration = new Registration({
+    firstName: body.firstName,
+    lastName: body.lastName,
+    emailID: body.emailID,
+    phoneNumber: body.phoneNumber,
+    dailCode: body.dailCode,
+});
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+     save_data
+    ),
+  };
+};
+
 const connectDB = () => {
-const dbUrl = "mongodb+srv://gcvkishore:iBjvJ4PFpJMeYzOu@p2q4.xfw8mws.mongodb.net/?retryWrites=true&w=majority";
-    mongoose.connect(dbUrl);
-    return mongoose.connection;
+  const dbUrl = "mongodb+srv://gunti:JPJCF7PhIiWI9jKu.xfw8mws.mongodb.net/?retryWrites=true&w=majority";
+  mongoose.connect(dbUrl);
+  return mongoose.connection;
 }
